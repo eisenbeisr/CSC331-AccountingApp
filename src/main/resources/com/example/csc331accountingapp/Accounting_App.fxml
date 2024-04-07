@@ -5,32 +5,79 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.MenuButton?>
 <?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
 <TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.csc331accountingapp.AccountingAppController">
   <tabs>
-    <Tab fx:id="companyBudgetTab" text="Company Budget">
+      <Tab fx:id="loginTab" text="Login">
+        <content>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+               <children>
+                  <Label layoutX="130.0" layoutY="107.0" text="Username" />
+                  <Label layoutX="130.0" layoutY="147.0" text="Password" />
+                  <TextField fx:id="usernameLoginField" layoutX="209.0" layoutY="103.0" promptText="username" />
+                  <PasswordField fx:id="passwordLoginField" layoutX="209.0" layoutY="143.0" promptText="password" />
+                  <Button fx:id="loginButton" layoutX="262.0" layoutY="197.0" mnemonicParsing="false" onAction="#loginButtonClicked" text="Login" />
+               </children>
+            </AnchorPane>
+        </content>
+      </Tab>
+      <Tab fx:id="homeTab" text="Home">
+        <content>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+               <children>
+                  <Label layoutX="135.0" layoutY="35.0" text="Comany Accounting/Budgeting System">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Label>
+                  <Separator layoutX="200.0" layoutY="76.0" prefWidth="200.0" />
+                  <Label layoutX="239.0" layoutY="96.0" text="Welcome," />
+                  <Label layoutX="300.0" layoutY="96.0" text="User!" />
+               </children>
+            </AnchorPane>
+        </content>
+      </Tab>
+      <Tab fx:id="addBudgetTab" text="Add Budget">
+        <content>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+               <children>
+                  <Label layoutX="56.0" layoutY="37.0" text="Comapny Name" />
+                  <Label layoutX="117.0" layoutY="73.0" text="Total" />
+                  <TextField fx:id="companyNameField" layoutX="167.0" layoutY="33.0" promptText="Enter" />
+                  <TextField fx:id="totalBudgetField" layoutX="167.0" layoutY="69.0" promptText="Enter" />
+                  <Button fx:id="submitBudgetChanges" layoutX="220.0" layoutY="122.0" mnemonicParsing="false" text="Submit" />
+               </children>
+            </AnchorPane>
+        </content>
+      </Tab>
+    <Tab fx:id="currentBudgetTab" text="Current Budget">
       <content>
         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                <children>
-                  <Label layoutX="34.0" layoutY="57.0" text="Annual Budget" />
-                  <TextField fx:id="transactionAmountTextField" layoutX="129.0" layoutY="53.0" promptText="Enter Annual Budget" />
-                  <MenuButton fx:id="departmentMenuButton" layoutX="397.0" layoutY="53.0" mnemonicParsing="false" text="Department">
+                  <Label layoutX="55.0" layoutY="28.0" text="Company Total" />
+                  <TextField fx:id="companyTotalBudget" layoutX="181.0" layoutY="24.0" />
+                  <MenuButton fx:id="deptTotalMenuButton" layoutX="51.0" layoutY="68.0" mnemonicParsing="false" text="Dept Total">
                     <items>
-                        <MenuItem mnemonicParsing="false" text="Company" />
-                      <MenuItem mnemonicParsing="false" text="Sales" />
-                      <MenuItem mnemonicParsing="false" text="Marketing" />
-                        <MenuItem mnemonicParsing="false" text="Production" />
-                        <MenuItem mnemonicParsing="false" text="IT" />
-                        <MenuItem mnemonicParsing="false" text="HR" />
+                        <MenuItem fx:id="salesMenuItem" mnemonicParsing="false" text="Sales" />
+                        <MenuItem fx:id="marketingMenuItem" mnemonicParsing="false" text="Marketing" />
+                        <MenuItem fx:id="productionMenuItem" mnemonicParsing="false" text="Production" />
+                      <MenuItem fx:id="ITMenuItem" mnemonicParsing="false" text="IT" />
+                      <MenuItem fx:id="HRMenuItem" mnemonicParsing="false" text="HR" />
                     </items>
                   </MenuButton>
-                  <Button fx:id="depositButton" layoutX="129.0" layoutY="106.0" mnemonicParsing="false" text="Deposit" />
-                  <Button fx:id="withdrawButton" layoutX="219.0" layoutY="106.0" mnemonicParsing="false" text="Withdraw" />
+                  <TextField fx:id="departmentTotalBudget" layoutX="181.0" layoutY="68.0" />
+                  <PieChart fx:id="pieChartDisplay1" layoutX="129.0" layoutY="42.0" onInputMethodTextChanged="#initialize" prefHeight="378.0" prefWidth="513.0" />
+                  <Label layoutX="51.0" layoutY="222.0" text="+" />
+                  <Label layoutX="52.0" layoutY="261.0" text="-" />
+                  <Button fx:id="depositButton" layoutX="81.0" layoutY="217.0" mnemonicParsing="false" text="Deposit" />
+                  <Button fx:id="withdrawButton" layoutX="81.0" layoutY="257.0" mnemonicParsing="false" text="Withdraw" />
                </children></AnchorPane>
       </content>
     </Tab>
@@ -40,23 +87,36 @@
                <children>
                   <TextField fx:id="companyBudgetTextField" editable="false" layoutX="76.0" layoutY="34.0" promptText="Annual Budget" />
                   <Label layoutX="9.0" layoutY="38.0" text="Budget" />
-                  <PieChart fx:id="pieChartDisplay" layoutX="274.0" layoutY="118.0" prefHeight="230.0" prefWidth="298.0" />
+                  <PieChart fx:id="pieChartDisplay2" layoutX="274.0" layoutY="118.0" onInputMethodTextChanged="#initialize" prefHeight="230.0" prefWidth="298.0" />
                   <Label layoutX="8.0" layoutY="148.0" text="Sales" />
                   <Label layoutX="9.0" layoutY="191.0" text="Marketing" />
                   <Label layoutX="7.0" layoutY="233.0" text="Production" />
                   <Label layoutX="9.0" layoutY="275.0" text="IT" />
                   <Label layoutX="6.0" layoutY="317.0" text="HR" />
-                  <TextField fx:id="salesDepartmentTextField" editable="false" layoutX="76.0" layoutY="143.0" promptText="Annual Budget" />
-                  <TextField fx:id="marketingDepartmentTextField" editable="false" layoutX="76.0" layoutY="187.0" promptText="Annual Budget" />
-                  <TextField fx:id="productionDepartmentTextField" editable="false" layoutX="76.0" layoutY="229.0" promptText="Annual Budget" />
-                  <TextField fx:id="ITDepartmentTextField" editable="false" layoutX="76.0" layoutY="271.0" promptText="Annual Budget" />
-                  <TextField fx:id="HRDepartmentTextField" editable="false" layoutX="76.0" layoutY="313.0" promptText="Annual Budget" />
+                  <TextField fx:id="salesDepartmentTextField" editable="false" layoutX="76.0" layoutY="143.0" promptText="Dept Budget" />
+                  <TextField fx:id="marketingDepartmentTextField" editable="false" layoutX="76.0" layoutY="187.0" promptText="Dept Budget" />
+                  <TextField fx:id="productionDepartmentTextField" editable="false" layoutX="76.0" layoutY="229.0" promptText="Dept Budget" />
+                  <TextField fx:id="ITDepartmentTextField" editable="false" layoutX="76.0" layoutY="271.0" promptText="Dept Budget" />
+                  <TextField fx:id="HRDepartmentTextField" editable="false" layoutX="76.0" layoutY="313.0" promptText="Dept Budget" />
                   <Separator layoutX="242.0" orientation="VERTICAL" prefHeight="200.0" />
                   <Separator layoutX="242.0" layoutY="171.0" orientation="VERTICAL" prefHeight="200.0" />
                   <Label layoutX="371.0" layoutY="92.0" text="Budget Distribution" />
                </children>
             </AnchorPane>
          </content>
+      </Tab>
+      <Tab fx:id="userAccountTab" text="User Account">
+        <content>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+               <children>
+                  <Label layoutX="54.0" layoutY="55.0" text="Username" />
+                  <Label layoutX="54.0" layoutY="98.0" text="Password" />
+                  <TextField fx:id="usernameDisplay" editable="false" layoutX="139.0" layoutY="51.0" />
+                  <Button fx:id="settingsButton" layoutX="55.0" layoutY="150.0" mnemonicParsing="false" text="Settings" />
+                  <PasswordField fx:id="passwordDisplay" layoutX="139.0" layoutY="94.0" />
+               </children>
+            </AnchorPane>
+        </content>
       </Tab>
   </tabs>
 </TabPane>
