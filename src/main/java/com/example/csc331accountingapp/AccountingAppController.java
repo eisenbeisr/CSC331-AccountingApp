@@ -3,55 +3,68 @@ package com.example.csc331accountingapp;
 import javafx.beans.binding.Bindings;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.chart.PieChart;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.MenuButton;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.PasswordField;
+import javafx.scene.control.Slider;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TextField;
-
-import java.net.URL;
-import java.util.ResourceBundle;
+import javafx.scene.input.InputMethodEvent;
 
 public class AccountingAppController {
 
     @FXML
-    private TextField HRDepartmentTextField;
+    private TextField HRDeptBudgetDisplay;
 
     @FXML
-    private MenuItem HRMenuItem;
+    private TextField ITDeptBudgetDisplay;
 
     @FXML
-    private TextField ITDepartmentTextField;
+    private Button accountSettingsButton;
 
     @FXML
-    private MenuItem ITMenuItem;
+    private Button addBudgetButton;
 
     @FXML
     private Tab addBudgetTab;
 
     @FXML
-    private TextField companyBudgetTextField;
+    private Button changeBudgetButton;
 
     @FXML
-    private TextField companyNameField;
+    private Tab changeBudgetTab;
+
+    @FXML
+    private TextField companyBudgetDisplay;
+
+    @FXML
+    private Label companyNameHomeTab;
+
+    @FXML
+    private TextField companyNameTextField;
 
     @FXML
     private TextField companyTotalBudget;
 
     @FXML
-    private Tab currentBudgetTab;
+    private Button currentBudgetButton;
 
     @FXML
-    private TextField departmentTotalBudget;
+    private Tab currentBudgetTab;
 
     @FXML
     private Button depositButton;
 
     @FXML
-    private MenuButton deptTotalMenuButton;
+    private TextField deptBudgetPercentDisplay;
+
+    @FXML
+    private Slider deptBudgetPercentSlider;
 
     @FXML
     private Tab homeTab;
@@ -63,10 +76,7 @@ public class AccountingAppController {
     private Tab loginTab;
 
     @FXML
-    private TextField marketingDepartmentTextField;
-
-    @FXML
-    private MenuItem marketingMenuItem;
+    private TextField marketingDeptBudgetDisplay;
 
     @FXML
     private PasswordField passwordDisplay;
@@ -75,31 +85,46 @@ public class AccountingAppController {
     private PasswordField passwordLoginField;
 
     @FXML
-    private PieChart pieChartDisplay1;
+    private PieChart pieChartDisplay;
 
     @FXML
-    private PieChart pieChartDisplay2;
+    private TextField productionDeptBudgetDisplay;
 
     @FXML
-    private TextField productionDepartmentTextField;
+    private TextField salesDeptBudgetDisplay;
 
     @FXML
-    private MenuItem productionMenuItem;
+    private MenuItem selectCompanyDept;
 
     @FXML
-    private Tab reportsTab;
+    private TextField selectDeptDisplayField;
 
     @FXML
-    private TextField salesDepartmentTextField;
+    private MenuButton selectDeptMenuButton;
 
     @FXML
-    private MenuItem salesMenuItem;
+    private MenuItem selectHRDept;
+
+    @FXML
+    private MenuItem selectITDept;
+
+    @FXML
+    private MenuItem selectMarketingDept;
+
+    @FXML
+    private MenuItem selectProductionDept;
+
+    @FXML
+    private MenuItem selectSalesDept;
 
     @FXML
     private Button settingsButton;
 
     @FXML
-    private TextField totalBudgetField;
+    private Button submitCompanyBudget;
+
+    @FXML
+    private TextField transactionAmountField;
 
     @FXML
     private Tab userAccountTab;
@@ -108,11 +133,21 @@ public class AccountingAppController {
     private TextField usernameDisplay;
 
     @FXML
+    private Label usernameHomeTab;
+
+    @FXML
     private TextField usernameLoginField;
 
     @FXML
     private Button withdrawButton;
 
+
+    // Added some methods for basic functionality (login portal & clicking buttons to change tabs)
+
+    /**
+     * This method is used to initialize the pie chart and split it up into 5 sections (1 for each department).
+     * This is just a template, we can edit this to get updated according to user input in the GUI.
+     */
     public void initialize() {
         ObservableList<PieChart.Data> pieChartData =
                 FXCollections.observableArrayList(
@@ -130,22 +165,59 @@ public class AccountingAppController {
                 )
         );
 
-        pieChartDisplay1.setData(pieChartData);
-        pieChartDisplay2.setData(pieChartData);
+        pieChartDisplay.setData(pieChartData);
     }
 
+    /**
+     * This method is used to get the text from the username and password fields in the Login tab,
+     * and set the username and password fields in the User Account tab when the login button is clicked.
+     */
     @FXML
     public void loginButtonClicked() {
-        // Get username and password from login fields
+
+        // Get username and password from login fields in Login tab
         String username = usernameLoginField.getText();
         String password = passwordLoginField.getText();
 
-        // Set username and password to display fields in user account tab
+        // Set username and password to display fields in User Account tab
         usernameDisplay.setText(username);
         passwordDisplay.setText(password);
 
-        // Switch to user account tab (optional)
+        // Switch to User Account tab when login button is clicked
         userAccountTab.getTabPane().getSelectionModel().select(userAccountTab);
+
+    }
+
+    @FXML
+    public void addBudgetButtonClicked() {
+
+        // Switch to Add Budget tab when add budget button is clicked
+        addBudgetTab.getTabPane().getSelectionModel().select(addBudgetTab);
+
+    }
+
+    @FXML
+    public void changeBudgetButtonClicked() {
+
+        // Switch to Change Budget tab when change budget button is clicked
+        changeBudgetTab.getTabPane().getSelectionModel().select(changeBudgetTab);
+
+    }
+
+    @FXML
+    public void currentBudgetButtonClicked() {
+
+        // Switch to Current Budget tab when current budget button is clicked
+        currentBudgetTab.getTabPane().getSelectionModel().select(currentBudgetTab);
+
+    }
+
+    @FXML
+    public void accountSettingsButtonClicked() {
+
+        // Switch to User Account tab when account settings button is clicked
+        userAccountTab.getTabPane().getSelectionModel().select(userAccountTab);
+
     }
 
 }
