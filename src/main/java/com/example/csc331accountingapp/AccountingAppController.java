@@ -180,12 +180,17 @@ public class AccountingAppController {
         String username = usernameLoginField.getText();
         String password = passwordLoginField.getText();
 
-        // Set username and password to display fields in User Account tab
-        usernameDisplay.setText(username);
-        passwordDisplay.setText(password);
 
-        // Switch to User Account tab when login button is clicked
-        userAccountTab.getTabPane().getSelectionModel().select(userAccountTab);
+        if (username.equals("user") && password.equals("password")){
+
+            usernameDisplay.setText(username);
+            passwordDisplay.setText(password);
+
+            userAccountTab.getTabPane().getSelectionModel().select(userAccountTab);
+
+        }
+
+
 
     }
 
