@@ -142,6 +142,9 @@ public class AccountingAppController {
     @FXML
     private Button withdrawButton;
 
+    @FXML
+    private TextField IncorrectPasswordInput;
+
 
     // Added some methods for basic functionality (login portal & clicking buttons to change tabs)
 
@@ -188,6 +191,15 @@ public class AccountingAppController {
 
             userAccountTab.getTabPane().getSelectionModel().select(userAccountTab);
 
+            IncorrectPasswordInput.setText("");
+
+        }
+
+        else {
+
+            IncorrectPasswordInput.setText("Incorrect Username or Password");
+            System.out.println("Test");
+
         }
 
 
@@ -225,5 +237,13 @@ public class AccountingAppController {
         userAccountTab.getTabPane().getSelectionModel().select(userAccountTab);
 
     }
+
+    @FXML
+    void AddCompanyBudgetSubmitClicked(ActionEvent event) {
+
+        System.out.println("Test");
+
+    }
+
 
 }
