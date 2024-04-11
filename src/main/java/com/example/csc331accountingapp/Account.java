@@ -3,6 +3,7 @@
 package com.example.csc331accountingapp;
 
 public class Account{
+  //assign private instance variables
   private String username; 
   private String password;
   private int userID; 
