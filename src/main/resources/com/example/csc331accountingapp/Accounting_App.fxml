@@ -48,11 +48,26 @@
                      </font>
                   </Label>
                   <Separator layoutX="200.0" layoutY="71.0" prefWidth="200.0" />
-                  <Label fx:id="usernameHomeTab" layoutX="251.0" layoutY="97.0" text="Welcome, User!" />
-                  <Button fx:id="addBudgetButton" layoutX="253.0" layoutY="138.0" mnemonicParsing="false" onAction="#addBudgetButtonClicked" text="Add Budget" />
-                  <Button fx:id="changeBudgetButton" layoutX="243.0" layoutY="178.0" mnemonicParsing="false" onAction="#changeBudgetButtonClicked" text="Change Budget" />
-                  <Button fx:id="currentBudgetButton" layoutX="244.0" layoutY="219.0" mnemonicParsing="false" onAction="#currentBudgetButtonClicked" text="Current Budget" />
-                  <Button fx:id="accountSettingsButton" layoutX="239.0" layoutY="257.0" mnemonicParsing="false" onAction="#accountSettingsButtonClicked" text="Account Settings" />
+                  <Label fx:id="usernameHomeTab" layoutX="243.0" layoutY="96.0" text="Welcome, User!">
+                     <font>
+                        <Font size="17.0" />
+                     </font></Label>
+                  <Button fx:id="addBudgetButton" layoutX="125.0" layoutY="144.0" mnemonicParsing="false" onAction="#addBudgetButtonClicked" prefHeight="40.0" prefWidth="150.0" text="Add Budget">
+                     <font>
+                        <Font size="17.0" />
+                     </font></Button>
+                  <Button fx:id="changeBudgetButton" layoutX="125.0" layoutY="212.0" mnemonicParsing="false" onAction="#changeBudgetButtonClicked" prefHeight="40.0" prefWidth="150.0" text="Change Budget">
+                     <font>
+                        <Font size="17.0" />
+                     </font></Button>
+                  <Button fx:id="currentBudgetButton" layoutX="325.0" layoutY="144.0" mnemonicParsing="false" onAction="#currentBudgetButtonClicked" prefHeight="40.0" prefWidth="150.0" text="Current Budget">
+                     <font>
+                        <Font size="17.0" />
+                     </font></Button>
+                  <Button fx:id="accountSettingsButton" layoutX="325.0" layoutY="212.0" mnemonicParsing="false" onAction="#accountSettingsButtonClicked" prefHeight="40.0" prefWidth="150.0" text="Account Settings">
+                     <font>
+                        <Font size="17.0" />
+                     </font></Button>
                </children>
             </AnchorPane>
         </content>
@@ -73,7 +88,7 @@
                   </Label>
                   <Separator layoutX="200.0" layoutY="65.0" prefHeight="0.0" prefWidth="200.0" />
                   <Slider fx:id="deptBudgetPercentSlider" blockIncrement="5.0" layoutX="230.0" layoutY="183.0" max="50.0" minorTickCount="4" showTickLabels="true" showTickMarks="true" snapToTicks="true" value="25.0" />
-                  <Label layoutX="96.0" layoutY="236.0" text="Dept % Distribution" />
+                  <Label layoutX="109.0" layoutY="237.0" text="Dept Distribution" />
                   <TextField fx:id="deptBudgetPercentDisplay" editable="false" layoutX="223.0" layoutY="232.0" />
                   <Label layoutX="174.0" layoutY="184.0" text="25%" />
                </children>
@@ -96,7 +111,6 @@
                   <TextField fx:id="transactionAmountField" layoutX="220.0" layoutY="96.0" promptText="Enter amount" />
                   <MenuButton fx:id="selectDeptMenuButton" layoutX="101.0" layoutY="136.0" mnemonicParsing="false" text="Select Dept">
                     <items>
-                        <MenuItem fx:id="selectCompanyDept" mnemonicParsing="false" text="Company" />
                         <MenuItem fx:id="selectSalesDept" mnemonicParsing="false" text="Sales" />
                         <MenuItem fx:id="selectMarketingDept" mnemonicParsing="false" text="Marketing" />
                         <MenuItem fx:id="selectProductionDept" mnemonicParsing="false" text="Production" />
