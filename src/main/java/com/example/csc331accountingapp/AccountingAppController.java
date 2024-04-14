@@ -3,6 +3,8 @@
 package com.example.csc331accountingapp;
 
 import javafx.beans.binding.Bindings;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -18,7 +20,14 @@ import javafx.scene.control.Tab;
 import javafx.scene.control.TextField;
 import javafx.scene.input.InputMethodEvent;
 
+import java.math.BigDecimal;
+import java.text.NumberFormat;
+
 public class AccountingAppController {
+    private static final NumberFormat currency = NumberFormat.getCurrencyInstance();
+    private static final NumberFormat percent = NumberFormat.getPercentInstance();
+
+    private BigDecimal deptPercentage = new BigDecimal(0.25);
 
     @FXML
     private TextField HRDeptBudgetDisplay;
@@ -63,10 +72,13 @@ public class AccountingAppController {
     private Button depositButton;
 
     @FXML
-    private TextField deptBudgetPercentDisplay;
+    private TextField deptDistributionDisplay;
 
     @FXML
     private Slider deptBudgetPercentSlider;
+
+    @FXML
+    private Label distributionPercentageLabel;
 
     @FXML
     private Tab homeTab;
@@ -171,6 +183,16 @@ public class AccountingAppController {
         );
 
         pieChartDisplay.setData(pieChartData);
+
+        deptBudgetPercentSlider.valueProperty().addListener(new ChangeListener<Number>() {
+            @Override
+            public void changed(ObservableValue<? extends Number> ov, Number oldValue, Number newValue) {
+                deptPercentage = BigDecimal.valueOf(newValue.intValue() / 100.0);
+                distributionPercentageLabel.setText(percent.format(deptPercentage));
+            }
+
+        }
+        );
     }
 
     /**
@@ -190,7 +212,7 @@ public class AccountingAppController {
             usernameDisplay.setText(username);
             passwordDisplay.setText(password);
 
-            userAccountTab.getTabPane().getSelectionModel().select(userAccountTab);
+            homeTab.getTabPane().getSelectionModel().select(homeTab);
 
             IncorrectPasswordInput.setText("");
 
@@ -199,11 +221,8 @@ public class AccountingAppController {
         else {
 
             IncorrectPasswordInput.setText("Incorrect Username or Password");
-            System.out.println("Test");
 
         }
-
-
 
     }
 
@@ -240,11 +259,18 @@ public class AccountingAppController {
     }
 
     @FXML
-    void AddCompanyBudgetSubmitClicked(ActionEvent event) {
+    public void AddCompanyBudgetSubmitClicked(ActionEvent event) {
 
-        System.out.println("Test");
+        // Get text from total budget field & multiply by deptPercentage
+        BigDecimal total_budget = new BigDecimal(companyTotalBudget.getText());
+        BigDecimal dept_distribution = total_budget.multiply(deptPercentage);
+
+        // Set company total budget text field to display as a currency
+        companyTotalBudget.setText(currency.format(total_budget));
+
+        // Display how much $ is to be distributed into each department
+        deptDistributionDisplay.setText(currency.format(dept_distribution));
 
     }
-
 
 }

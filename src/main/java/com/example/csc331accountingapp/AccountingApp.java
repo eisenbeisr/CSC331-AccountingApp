@@ -12,7 +12,7 @@ public class AccountingApp extends Application{
         Parent root = FXMLLoader.load(getClass().getResource("Accounting_App.fxml"));
 
         Scene scene = new Scene(root);
-        stage.setTitle("Accounting App");
+        stage.setTitle("Company Budgeting App");
         stage.setScene(scene);
         stage.show();
     }

@@ -22,18 +22,36 @@
         <content>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                <children>
-                  <Label layoutX="130.0" layoutY="107.0" text="Username" />
-                  <Label layoutX="130.0" layoutY="147.0" text="Password" />
-                  <TextField fx:id="usernameLoginField" layoutX="209.0" layoutY="103.0" promptText="username" />
-                  <PasswordField fx:id="passwordLoginField" layoutX="209.0" layoutY="143.0" promptText="password" />
-                  <Button fx:id="loginButton" layoutX="262.0" layoutY="197.0" mnemonicParsing="false" onAction="#loginButtonClicked" text="Login" />
+                  <Label layoutX="126.0" layoutY="107.0" text="Username">
+                     <font>
+                        <Font size="16.0" />
+                     </font></Label>
+                  <Label layoutX="129.0" layoutY="147.0" text="Password">
+                     <font>
+                        <Font size="16.0" />
+                     </font></Label>
+                  <TextField fx:id="usernameLoginField" layoutX="206.0" layoutY="103.0" promptText="username">
+                     <font>
+                        <Font size="14.0" />
+                     </font></TextField>
+                  <PasswordField fx:id="passwordLoginField" layoutX="206.0" layoutY="143.0" promptText="password">
+                     <font>
+                        <Font size="14.0" />
+                     </font></PasswordField>
+                  <Button fx:id="loginButton" layoutX="259.0" layoutY="197.0" mnemonicParsing="false" onAction="#loginButtonClicked" text="Login">
+                     <font>
+                        <Font size="16.0" />
+                     </font></Button>
                   <Label layoutX="217.0" layoutY="36.0" text="User Login Portal">
                      <font>
                         <Font size="20.0" />
                      </font>
                   </Label>
                   <Separator layoutX="189.0" layoutY="68.0" prefWidth="200.0" />
-                  <TextField fx:id="IncorrectPasswordInput" alignment="CENTER" editable="false" layoutX="153.0" layoutY="267.0" prefHeight="25.0" prefWidth="277.0" />
+                  <TextField fx:id="IncorrectPasswordInput" alignment="CENTER" editable="false" layoutX="150.0" layoutY="267.0" prefHeight="25.0" prefWidth="277.0">
+                     <font>
+                        <Font size="14.0" />
+                     </font></TextField>
                </children>
             </AnchorPane>
         </content>
@@ -56,11 +74,11 @@
                      <font>
                         <Font size="17.0" />
                      </font></Button>
-                  <Button fx:id="changeBudgetButton" layoutX="125.0" layoutY="212.0" mnemonicParsing="false" onAction="#changeBudgetButtonClicked" prefHeight="40.0" prefWidth="150.0" text="Change Budget">
+                  <Button fx:id="changeBudgetButton" layoutX="325.0" layoutY="144.0" mnemonicParsing="false" onAction="#changeBudgetButtonClicked" prefHeight="40.0" prefWidth="150.0" text="Change Budget">
                      <font>
                         <Font size="17.0" />
                      </font></Button>
-                  <Button fx:id="currentBudgetButton" layoutX="325.0" layoutY="144.0" mnemonicParsing="false" onAction="#currentBudgetButtonClicked" prefHeight="40.0" prefWidth="150.0" text="Current Budget">
+                  <Button fx:id="currentBudgetButton" layoutX="125.0" layoutY="212.0" mnemonicParsing="false" onAction="#currentBudgetButtonClicked" prefHeight="40.0" prefWidth="150.0" text="Current Budget">
                      <font>
                         <Font size="17.0" />
                      </font></Button>
@@ -76,52 +94,49 @@
         <content>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                <children>
-                  <Label layoutX="111.0" layoutY="98.0" text="Company Name" />
-                  <Label layoutX="131.0" layoutY="142.0" text="Total Budget" />
-                  <TextField fx:id="companyNameTextField" layoutX="223.0" layoutY="94.0" promptText="Enter Company Name" />
-                  <TextField fx:id="companyTotalBudget" layoutX="223.0" layoutY="137.0" promptText="Enter Total Budget" />
-                  <Button fx:id="submitCompanyBudget" layoutX="272.0" layoutY="282.0" mnemonicParsing="false" onAction="#AddCompanyBudgetSubmitClicked" text="Submit" />
+                  <Label layoutX="91.0" layoutY="97.0" text="Company Name">
+                     <font>
+                        <Font size="16.0" />
+                     </font></Label>
+                  <Label layoutX="114.0" layoutY="141.0" text="Total Budget">
+                     <font>
+                        <Font size="16.0" />
+                     </font></Label>
+                  <TextField fx:id="companyNameTextField" layoutX="209.0" layoutY="92.0" prefHeight="30.0" prefWidth="183.0" promptText="Enter Company Name">
+                     <font>
+                        <Font size="14.0" />
+                     </font></TextField>
+                  <TextField fx:id="companyTotalBudget" layoutX="209.0" layoutY="136.0" prefHeight="30.0" prefWidth="183.0" promptText="Enter Total Budget">
+                     <font>
+                        <Font size="14.0" />
+                     </font></TextField>
+                  <Button fx:id="submitCompanyBudget" layoutX="266.0" layoutY="282.0" mnemonicParsing="false" onAction="#AddCompanyBudgetSubmitClicked" text="Submit">
+                     <font>
+                        <Font size="16.0" />
+                     </font></Button>
                   <Label layoutX="207.0" layoutY="32.0" text="Add Company Budget">
                      <font>
                         <Font size="20.0" />
                      </font>
                   </Label>
                   <Separator layoutX="200.0" layoutY="65.0" prefHeight="0.0" prefWidth="200.0" />
-                  <Slider fx:id="deptBudgetPercentSlider" blockIncrement="5.0" layoutX="230.0" layoutY="183.0" max="50.0" minorTickCount="4" showTickLabels="true" showTickMarks="true" snapToTicks="true" value="25.0" />
-                  <Label layoutX="109.0" layoutY="237.0" text="Dept Distribution" />
-                  <TextField fx:id="deptBudgetPercentDisplay" editable="false" layoutX="223.0" layoutY="232.0" />
-                  <Label layoutX="174.0" layoutY="184.0" text="25%" />
+                  <Slider fx:id="deptBudgetPercentSlider" blockIncrement="5.0" layoutX="230.0" layoutY="185.0" max="50.0" minorTickCount="4" showTickLabels="true" showTickMarks="true" snapToTicks="true" value="25.0" />
+                  <Label layoutX="87.0" layoutY="236.0" text="Dept Distribution">
+                     <font>
+                        <Font size="16.0" />
+                     </font></Label>
+                  <TextField fx:id="deptDistributionDisplay" editable="false" layoutX="209.0" layoutY="231.0" prefHeight="30.0" prefWidth="183.0">
+                     <font>
+                        <Font size="14.0" />
+                     </font></TextField>
+                  <Label fx:id="distributionPercentageLabel" layoutX="168.0" layoutY="185.0" text="25%">
+                     <font>
+                        <Font size="16.0" />
+                     </font></Label>
                </children>
             </AnchorPane>
         </content>
       </Tab>
-    <Tab fx:id="changeBudgetTab" text="Change Budget">
-      <content>
-        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-               <children>
-                  <Button fx:id="depositButton" layoutX="220.0" layoutY="184.0" mnemonicParsing="false" text="Deposit" />
-                  <Button fx:id="withdrawButton" layoutX="310.0" layoutY="184.0" mnemonicParsing="false" text="Withdraw" />
-                  <Label layoutX="196.0" layoutY="28.0" text="Deposit/Withdraw Funds">
-                     <font>
-                        <Font size="20.0" />
-                     </font>
-                  </Label>
-                  <Separator layoutX="200.0" layoutY="63.0" prefWidth="200.0" />
-                  <Label layoutX="156.0" layoutY="100.0" text="Amount" />
-                  <TextField fx:id="transactionAmountField" layoutX="220.0" layoutY="96.0" promptText="Enter amount" />
-                  <MenuButton fx:id="selectDeptMenuButton" layoutX="101.0" layoutY="136.0" mnemonicParsing="false" text="Select Dept">
-                    <items>
-                        <MenuItem fx:id="selectSalesDept" mnemonicParsing="false" text="Sales" />
-                        <MenuItem fx:id="selectMarketingDept" mnemonicParsing="false" text="Marketing" />
-                        <MenuItem fx:id="selectProductionDept" mnemonicParsing="false" text="Production" />
-                      <MenuItem fx:id="selectITDept" mnemonicParsing="false" text="IT" />
-                      <MenuItem fx:id="selectHRDept" mnemonicParsing="false" text="HR" />
-                    </items>
-                  </MenuButton>
-                  <TextField fx:id="selectDeptDisplayField" editable="false" layoutX="220.0" layoutY="137.0" promptText="Department" />
-               </children></AnchorPane>
-      </content>
-    </Tab>
       <Tab fx:id="currentBudgetTab" text="Current Budget">
          <content>
             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
@@ -151,15 +166,75 @@
             </AnchorPane>
          </content>
       </Tab>
+    <Tab fx:id="changeBudgetTab" text="Change Budget">
+      <content>
+        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+               <children>
+                  <Button fx:id="depositButton" layoutX="209.0" layoutY="208.0" mnemonicParsing="false" text="Deposit">
+                     <font>
+                        <Font size="16.0" />
+                     </font></Button>
+                  <Button fx:id="withdrawButton" layoutX="306.0" layoutY="208.0" mnemonicParsing="false" text="Withdraw">
+                     <font>
+                        <Font size="16.0" />
+                     </font></Button>
+                  <Label layoutX="196.0" layoutY="28.0" text="Deposit/Withdraw Funds">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Label>
+                  <Separator layoutX="200.0" layoutY="63.0" prefWidth="200.0" />
+                  <Label layoutX="139.0" layoutY="99.0" text="Amount">
+                     <font>
+                        <Font size="16.0" />
+                     </font></Label>
+                  <TextField fx:id="transactionAmountField" layoutX="209.0" layoutY="94.0" prefHeight="30.0" prefWidth="183.0" promptText="Enter amount">
+                     <font>
+                        <Font size="14.0" />
+                     </font></TextField>
+                  <MenuButton fx:id="selectDeptMenuButton" layoutX="72.0" layoutY="152.0" mnemonicParsing="false" text="Select Dept">
+                    <items>
+                        <MenuItem fx:id="selectSalesDept" mnemonicParsing="false" text="Sales" />
+                        <MenuItem fx:id="selectMarketingDept" mnemonicParsing="false" text="Marketing" />
+                        <MenuItem fx:id="selectProductionDept" mnemonicParsing="false" text="Production" />
+                      <MenuItem fx:id="selectITDept" mnemonicParsing="false" text="IT" />
+                      <MenuItem fx:id="selectHRDept" mnemonicParsing="false" text="HR" />
+                    </items>
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </MenuButton>
+                  <TextField fx:id="selectDeptDisplayField" editable="false" layoutX="209.0" layoutY="152.0" prefHeight="30.0" prefWidth="183.0" promptText="Department">
+                     <font>
+                        <Font size="14.0" />
+                     </font></TextField>
+               </children></AnchorPane>
+      </content>
+    </Tab>
       <Tab fx:id="userAccountTab" text="User Account">
         <content>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                <children>
-                  <Label layoutX="58.0" layoutY="99.0" text="Username" />
-                  <Label layoutX="59.0" layoutY="138.0" text="Password" />
-                  <TextField fx:id="usernameDisplay" editable="false" layoutX="139.0" layoutY="94.0" />
-                  <Button fx:id="settingsButton" layoutX="55.0" layoutY="184.0" mnemonicParsing="false" text="Settings" />
-                  <PasswordField fx:id="passwordDisplay" editable="false" layoutX="139.0" layoutY="133.0" />
+                  <Label layoutX="58.0" layoutY="101.0" text="Username">
+                     <font>
+                        <Font size="16.0" />
+                     </font></Label>
+                  <Label layoutX="59.0" layoutY="142.0" text="Password">
+                     <font>
+                        <Font size="16.0" />
+                     </font></Label>
+                  <TextField fx:id="usernameDisplay" editable="false" layoutX="140.0" layoutY="96.0" prefHeight="30.0" prefWidth="183.0">
+                     <font>
+                        <Font size="14.0" />
+                     </font></TextField>
+                  <Button fx:id="settingsButton" layoutX="54.0" layoutY="188.0" mnemonicParsing="false" text="Settings">
+                     <font>
+                        <Font size="16.0" />
+                     </font></Button>
+                  <PasswordField fx:id="passwordDisplay" editable="false" layoutX="140.0" layoutY="137.0" prefHeight="30.0" prefWidth="183.0">
+                     <font>
+                        <Font size="14.0" />
+                     </font></PasswordField>
                   <Label layoutX="193.0" layoutY="31.0" text="User Account Credentials">
                      <font>
                         <Font size="20.0" />
