@@ -18,10 +18,15 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.Slider;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TextField;
-import javafx.scene.input.InputMethodEvent;
+
 
 import java.math.BigDecimal;
 import java.text.NumberFormat;
+
+import java.util.Scanner;
+import java.util.Formatter;
+import java.nio.file.Paths;
+import java.io.IOException;
 
 public class AccountingAppController {
     private static final NumberFormat currency = NumberFormat.getCurrencyInstance();
@@ -156,6 +161,9 @@ public class AccountingAppController {
     private Button withdrawButton;
 
     @FXML
+    private TextField IncorrectPasswordFileScanner;
+
+    @FXML
     private TextField IncorrectPasswordInput;
 
 
@@ -163,7 +171,7 @@ public class AccountingAppController {
 
     /**
      * This method is used to initialize the pie chart and split it up into 5 sections (1 for each department).
-     * This is just a template, we can edit this to get updated according to user input in the GUI.
+     * This is just a template, we can edit this to get updated according to user FileScanner in the GUI.
      */
     public void initialize() {
         ObservableList<PieChart.Data> pieChartData =
@@ -206,23 +214,57 @@ public class AccountingAppController {
         String username = usernameLoginField.getText();
         String password = passwordLoginField.getText();
 
+        try(Scanner FileScanner = new Scanner(Paths.get("Users.txt"));){
 
-        if (username.equals("user") && password.equals("password")){
+            boolean Found = false;
 
-            usernameDisplay.setText(username);
-            passwordDisplay.setText(password);
+            while (FileScanner.hasNext() && !Found){
 
-            homeTab.getTabPane().getSelectionModel().select(homeTab);
+                String userName = FileScanner.next();
+                String Password = FileScanner.next();
+                String fileName = FileScanner.next();
 
-            IncorrectPasswordInput.setText("");
+                System.out.println("Iterate");
 
+                if (userName.equals(username) && Password.equals(password)){
+
+
+
+                    Found = true;
+
+                    try(Scanner DataScanner = new Scanner(Paths.get(fileName));){
+
+                        
+                        companyBudgetDisplay.setText(DataScanner.next());
+                        salesDeptBudgetDisplay.setText(DataScanner.next());
+                        marketingDeptBudgetDisplay.setText(DataScanner.next());
+                        productionDeptBudgetDisplay.setText(DataScanner.next());
+                        ITDeptBudgetDisplay.setText(DataScanner.next());
+                        HRDeptBudgetDisplay.setText(DataScanner.next());
+
+                    }
+
+                    catch(IOException e){
+                        e.printStackTrace();
+                    }
+
+                    System.out.println("Pass");
+
+            System.out.println("Past");
+
+            if (!Found){
+
+                IncorrectPasswordInput.setText("Incorrect UserName or Password");
+            }
+                }
+            }
+        }
+        catch (IOException e){
+            e.printStackTrace();
         }
 
-        else {
 
-            IncorrectPasswordInput.setText("Incorrect Username or Password");
-
-        }
+        
 
     }
 
