@@ -224,7 +224,7 @@ public class AccountingAppController {
                 String Password = FileScanner.next();
                 String fileName = FileScanner.next();
 
-                System.out.println("Iterate");
+                
 
                 if (userName.equals(username) && Password.equals(password)){
 
@@ -242,21 +242,25 @@ public class AccountingAppController {
                         ITDeptBudgetDisplay.setText(DataScanner.next());
                         HRDeptBudgetDisplay.setText(DataScanner.next());
 
+                        IncorrectPasswordInput.setText("");
+
                     }
 
                     catch(IOException e){
                         e.printStackTrace();
                     }
 
-                    System.out.println("Pass");
+            
 
-            System.out.println("Past");
+            
+
+            
+                }
+            }
 
             if (!Found){
 
                 IncorrectPasswordInput.setText("Incorrect UserName or Password");
-            }
-                }
             }
         }
         catch (IOException e){
