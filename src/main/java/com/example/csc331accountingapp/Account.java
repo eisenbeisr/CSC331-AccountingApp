@@ -1,5 +1,6 @@
 //sidney tsui
-//comments: this is just to get started, may need changing and adding 
+//added: withdraw, deposit, and view balance
+
 
 
 package com.example.csc331accountingapp;
