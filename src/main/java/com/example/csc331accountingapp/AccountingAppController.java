@@ -189,155 +189,29 @@ public void initialize() {
     // Set Pie Chart data
     pieChartDisplay.setData(pieChartData);
 
-    // Create a listener for Department Budget Percent Slider
-    deptBudgetPercentSlider.valueProperty().addListener(new ChangeListener<Number>() {
-        @Override
-        public void changed(ObservableValue<? extends Number> ov, Number oldValue, Number newValue) {
+        deptBudgetPercentSlider.valueProperty().addListener(new ChangeListener<Number>() {
+            @Override
+            public void changed(ObservableValue<? extends Number> ov, Number oldValue, Number newValue) {
+                deptPercentage = BigDecimal.valueOf(newValue.intValue() / 100.0);
+                distributionPercentageLabel.setText(percent.format(deptPercentage));
+            }
 
-            // Divide percentage slider number by 100
-            deptPercentage = BigDecimal.valueOf(newValue.intValue() / 100.0);
-            // Set text of distribution percent label and format as a percentage
-            distributionPercentageLabel.setText(percent.format(deptPercentage));
         }
-    });
-}
+        );
+    }
 
-/**
- * This method is used to update the Pie Chart data when the Text Fields in the Current Budget Tab is updated.
- */
-@FXML
-public void updatePieChartData() {
-    ObservableList<PieChart.Data> pieChartData =
-        FXCollections.observableArrayList(
+    /**
+     * This method is used to get the text from the username and password fields in the Login tab,
+     * and set the username and password fields in the User Account tab when the login button is clicked.
+     */
+    @FXML
+    public void loginButtonClicked() {
 
-            // Get text from each dept budget text field and remove any characters than are not integers
-            new PieChart.Data("Sales", new BigDecimal(salesDeptBudgetDisplay.getText().replace(",", "").replace("$", "")).doubleValue()),
-            new PieChart.Data("Marketing", new BigDecimal(marketingDeptBudgetDisplay.getText().replace(",", "").replace("$", "")).doubleValue()),
-            new PieChart.Data("Production", new BigDecimal(productionDeptBudgetDisplay.getText().replace(",", "").replace("$", "")).doubleValue()),
-            new PieChart.Data("IT", new BigDecimal(ITDeptBudgetDisplay.getText().replace(",", "").replace("$", "")).doubleValue()),
-            new PieChart.Data("HR", new BigDecimal(HRDeptBudgetDisplay.getText().replace(",", "").replace("$", "")).doubleValue()));
+        // Get username and password from login fields in Login tab
+        String username = usernameLoginField.getText();
+        String password = passwordLoginField.getText();
 
-<<<<<<< HEAD
         try(Scanner FileScanner = new Scanner(Paths.get("Users.txt"));){
-
-            boolean Found = false;
-
-            while (FileScanner.hasNext() && !Found){
-
-                String userName = FileScanner.next();
-                String Password = FileScanner.next();
-                String fileName = FileScanner.next();
-
-                
-
-                if (userName.equals(username) && Password.equals(password)){
-
-
-
-                    Found = true;
-
-                    try(Scanner DataScanner = new Scanner(Paths.get(fileName));){
-
-                        
-                        companyBudgetDisplay.setText(DataScanner.next());
-                        salesDeptBudgetDisplay.setText(DataScanner.next());
-                        marketingDeptBudgetDisplay.setText(DataScanner.next());
-                        productionDeptBudgetDisplay.setText(DataScanner.next());
-                        ITDeptBudgetDisplay.setText(DataScanner.next());
-                        HRDeptBudgetDisplay.setText(DataScanner.next());
-
-                        IncorrectPasswordInput.setText("");
-
-                    }
-
-                    catch(IOException e){
-                        e.printStackTrace();
-                    }
-            
-                }
-            }
-
-            if (!Found){
-
-                IncorrectPasswordInput.setText("Incorrect UserName or Password");
-            }
-        }
-        catch (IOException e){
-            e.printStackTrace();
-        }
-
-
-        
-
-    }
-
-    @FXML
-    public void addBudgetButtonClicked() {
-
-        // Switch to Add Budget tab when add budget button is clicked
-        addBudgetTab.getTabPane().getSelectionModel().select(addBudgetTab);
-
-    }
-
-    @FXML
-    public void changeBudgetButtonClicked() {
-
-        // Switch to Change Budget tab when change budget button is clicked
-        changeBudgetTab.getTabPane().getSelectionModel().select(changeBudgetTab);
-
-    }
-
-    @FXML
-    public void currentBudgetButtonClicked() {
-
-        // Switch to Current Budget tab when current budget button is clicked
-        currentBudgetTab.getTabPane().getSelectionModel().select(currentBudgetTab);
-
-    }
-
-    @FXML
-    public void accountSettingsButtonClicked() {
-
-        // Switch to User Account tab when account settings button is clicked
-        userAccountTab.getTabPane().getSelectionModel().select(userAccountTab);
-
-    }
-
-    @FXML
-    public void AddCompanyBudgetSubmitClicked(ActionEvent event) {
-
-        // Get text from total budget field & multiply by deptPercentage
-        BigDecimal total_budget = new BigDecimal(companyTotalBudget.getText());
-        BigDecimal dept_distribution = total_budget.multiply(deptPercentage);
-
-        // Set company total budget text field to display as a currency
-        companyTotalBudget.setText(currency.format(total_budget));
-
-        // Display how much $ is to be distributed into each department
-        deptDistributionDisplay.setText(currency.format(dept_distribution));
-
-    }
-=======
-    // Update Pie Chart data with new values from individual departments in Current Budget Tab
-    pieChartDisplay.setData(pieChartData);
-
-}
-
-/**
- * This method is used to get the text from the Username and Password Text Fields in the Login tab,
- * and set the Username and Password Text Fields in the User Account tab when the Login Button is clicked.
- * It also checks for valid username and password credentials and updates the Current Budget Tab by reading values
- * from each user's associated text files.
- */
-@FXML
-public void loginButtonClicked() {
-
-    // Get username and password from login Text Fields in Login tab
-    String username = usernameLoginField.getText();
-    String password = passwordLoginField.getText();
-
-    // Create a scanner to read data in Users.txt file
-    try (Scanner FileScanner = new Scanner(Paths.get("Users.txt"));) {
 
         boolean Found = false;
 
@@ -399,33 +273,34 @@ public void loginButtonClicked() {
 
                 }
 
-                // Handling exceptions
-                catch (IOException e) {
-                    e.printStackTrace();
+                    catch(IOException e){
+                        e.printStackTrace();
+                    }
 
+            
+
+            
+
+            
                 }
             }
+
+            if (!Found){
+
+                IncorrectPasswordInput.setText("Incorrect UserName or Password");
+            }
+        }
+        catch (IOException e){
+            e.printStackTrace();
         }
 
-        // Set Text Field for Incorrect Password Input if incorrect username/password is entered
-        if (!Found) {
-            IncorrectPasswordInput.setText("Incorrect Username or Password");
 
-        }
+        
+
     }
 
-    // Handling exceptions
-    catch(IOException e) {
-        e.printStackTrace();
-
-        }
-     }
-
-/**
-  * This method switches to the Add Budget Tab when the Add Budget Button is clicked.
-  */
-@FXML
-public void addBudgetButtonClicked() {
+    @FXML
+    public void addBudgetButtonClicked() {
 
     // Switch to Add Budget tab when add budget button is clicked
     addBudgetTab.getTabPane().getSelectionModel().select(addBudgetTab);
@@ -616,7 +491,6 @@ public void withdrawFunds() {
     // Update Pie Chart Data
     updatePieChartData();
 
-}
->>>>>>> d93e91de0026c4f0d804956df6e5ef9f0ab22ee3
+    }
 
 }
