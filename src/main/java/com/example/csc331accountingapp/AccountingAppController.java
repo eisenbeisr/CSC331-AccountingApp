@@ -1,5 +1,11 @@
-//JakeDaShark
-// Test (Ryan)
+/**
+* Section: CSC331-001
+* Group: 7
+* Team: Ryan Eisenbeis, Jake Rouse, Oliver Rice, Sidney Tsui, Jackson Snyder
+* Project Title: Accounting/Budgeting App
+* Date: April 21, 2024.
+*/
+
 package com.example.csc331accountingapp;
 
 import javafx.beans.binding.Bindings;
@@ -19,304 +25,496 @@ import javafx.scene.control.Slider;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TextField;
 
-
 import java.math.BigDecimal;
 import java.text.NumberFormat;
 
 import java.util.Scanner;
-import java.util.Formatter;
 import java.nio.file.Paths;
 import java.io.IOException;
 
 public class AccountingAppController {
-    private static final NumberFormat currency = NumberFormat.getCurrencyInstance();
-    private static final NumberFormat percent = NumberFormat.getPercentInstance();
 
-    private BigDecimal deptPercentage = new BigDecimal(0.25);
+// Convert number to currency
+private static final NumberFormat currency = NumberFormat.getCurrencyInstance();
+// Convert number to a percentage
+private static final NumberFormat percent = NumberFormat.getPercentInstance();
 
-    @FXML
-    private TextField HRDeptBudgetDisplay;
+// Initialize department percentage to 25%
+private BigDecimal deptPercentage = new BigDecimal(0.25);
 
-    @FXML
-    private TextField ITDeptBudgetDisplay;
+// Initialize JavaFX fxids
+@FXML
+private TextField HRDeptBudgetDisplay;
 
-    @FXML
-    private Button accountSettingsButton;
+@FXML
+private TextField ITDeptBudgetDisplay;
 
-    @FXML
-    private Button addBudgetButton;
+@FXML
+private Button accountSettingsButton;
 
-    @FXML
-    private Tab addBudgetTab;
+@FXML
+private Button addBudgetButton;
 
-    @FXML
-    private Button changeBudgetButton;
+@FXML
+private Tab addBudgetTab;
 
-    @FXML
-    private Tab changeBudgetTab;
+@FXML
+private Button changeBudgetButton;
 
-    @FXML
-    private TextField companyBudgetDisplay;
+@FXML
+private Tab changeBudgetTab;
 
-    @FXML
-    private Label companyNameHomeTab;
+@FXML
+private TextField companyBudgetDisplay;
 
-    @FXML
-    private TextField companyNameTextField;
+@FXML
+private Label companyNameHomeTab;
 
-    @FXML
-    private TextField companyTotalBudget;
+@FXML
+private TextField companyNameTextField;
 
-    @FXML
-    private Button currentBudgetButton;
+@FXML
+private TextField companyTotalBudget;
 
-    @FXML
-    private Tab currentBudgetTab;
+@FXML
+private Button currentBudgetButton;
 
-    @FXML
-    private Button depositButton;
+@FXML
+private Tab currentBudgetTab;
 
-    @FXML
-    private TextField deptDistributionDisplay;
+@FXML
+private Button depositButton;
 
-    @FXML
-    private Slider deptBudgetPercentSlider;
+@FXML
+private TextField deptDistributionDisplay;
 
-    @FXML
-    private Label distributionPercentageLabel;
+@FXML
+private Slider deptBudgetPercentSlider;
 
-    @FXML
-    private Tab homeTab;
+@FXML
+private Label distributionPercentageLabel;
 
-    @FXML
-    private Button loginButton;
+@FXML
+private Tab homeTab;
 
-    @FXML
-    private Tab loginTab;
+@FXML
+private Button loginButton;
 
-    @FXML
-    private TextField marketingDeptBudgetDisplay;
+@FXML
+private Tab loginTab;
 
-    @FXML
-    private PasswordField passwordDisplay;
+@FXML
+private TextField marketingDeptBudgetDisplay;
 
-    @FXML
-    private PasswordField passwordLoginField;
+@FXML
+private PasswordField passwordDisplay;
 
-    @FXML
-    private PieChart pieChartDisplay;
+@FXML
+private PasswordField passwordLoginField;
 
-    @FXML
-    private TextField productionDeptBudgetDisplay;
+@FXML
+private PieChart pieChartDisplay;
 
-    @FXML
-    private TextField salesDeptBudgetDisplay;
+@FXML
+private TextField productionDeptBudgetDisplay;
 
-    @FXML
-    private MenuItem selectCompanyDept;
+@FXML
+private TextField salesDeptBudgetDisplay;
 
-    @FXML
-    private TextField selectDeptDisplayField;
+@FXML
+private MenuItem selectCompanyDept;
 
-    @FXML
-    private MenuButton selectDeptMenuButton;
+@FXML
+private TextField selectDeptDisplayField;
 
-    @FXML
-    private MenuItem selectHRDept;
+@FXML
+private MenuButton selectDeptMenuButton;
 
-    @FXML
-    private MenuItem selectITDept;
+@FXML
+private MenuItem selectHRDept;
 
-    @FXML
-    private MenuItem selectMarketingDept;
+@FXML
+private MenuItem selectITDept;
 
-    @FXML
-    private MenuItem selectProductionDept;
+@FXML
+private MenuItem selectMarketingDept;
 
-    @FXML
-    private MenuItem selectSalesDept;
+@FXML
+private MenuItem selectProductionDept;
 
-    @FXML
-    private Button settingsButton;
+@FXML
+private MenuItem selectSalesDept;
 
-    @FXML
-    private Button submitCompanyBudget;
+@FXML
+private Button settingsButton;
 
-    @FXML
-    private TextField transactionAmountField;
+@FXML
+private Button submitCompanyBudget;
 
-    @FXML
-    private Tab userAccountTab;
+@FXML
+private TextField transactionAmountField;
 
-    @FXML
-    private TextField usernameDisplay;
+@FXML
+private Tab userAccountTab;
 
-    @FXML
-    private Label usernameHomeTab;
+@FXML
+private TextField usernameDisplay;
 
-    @FXML
-    private TextField usernameLoginField;
+@FXML
+private Label usernameHomeTab;
 
-    @FXML
-    private Button withdrawButton;
+@FXML
+private TextField usernameLoginField;
 
-    @FXML
-    private TextField IncorrectPasswordFileScanner;
+@FXML
+private Button withdrawButton;
 
-    @FXML
-    private TextField IncorrectPasswordInput;
+@FXML
+private TextField IncorrectPasswordInput;
 
+/**
+ * This method is used to initialize the Pie Chart and add a listener for the dept distribution percentage.
+ */
+@FXML
+public void initialize() {
 
-    // Added some methods for basic functionality (login portal & clicking buttons to change tabs)
+    // Add new Pie Chart data
+    ObservableList<PieChart.Data> pieChartData =
+            FXCollections.observableArrayList(
+                    new PieChart.Data("Company", 100));
 
-    /**
-     * This method is used to initialize the pie chart and split it up into 5 sections (1 for each department).
-     * This is just a template, we can edit this to get updated according to user FileScanner in the GUI.
-     */
-    public void initialize() {
-        ObservableList<PieChart.Data> pieChartData =
-                FXCollections.observableArrayList(
-                        new PieChart.Data("Sales", 20),
-                        new PieChart.Data("Marketing", 20),
-                        new PieChart.Data("Production", 20),
-                        new PieChart.Data("IT", 20),
-                        new PieChart.Data("HR", 20));
+    pieChartData.forEach(data ->
+            data.nameProperty().bind(Bindings.concat(data.getName(), " ", data.pieValueProperty(), "%")));
 
-        pieChartData.forEach(data ->
-                data.nameProperty().bind(
-                        Bindings.concat(
-                                data.getName(), " amount: ", data.pieValueProperty()
-                        )
-                )
-        );
+    // Set Pie Chart data
+    pieChartDisplay.setData(pieChartData);
 
-        pieChartDisplay.setData(pieChartData);
+    // Create a listener for Department Budget Percent Slider
+    deptBudgetPercentSlider.valueProperty().addListener(new ChangeListener<Number>() {
+        @Override
+        public void changed(ObservableValue<? extends Number> ov, Number oldValue, Number newValue) {
 
-        deptBudgetPercentSlider.valueProperty().addListener(new ChangeListener<Number>() {
-            @Override
-            public void changed(ObservableValue<? extends Number> ov, Number oldValue, Number newValue) {
-                deptPercentage = BigDecimal.valueOf(newValue.intValue() / 100.0);
-                distributionPercentageLabel.setText(percent.format(deptPercentage));
-            }
-
+            // Divide percentage slider number by 100
+            deptPercentage = BigDecimal.valueOf(newValue.intValue() / 100.0);
+            // Set text of distribution percent label and format as a percentage
+            distributionPercentageLabel.setText(percent.format(deptPercentage));
         }
-        );
-    }
+    });
+}
 
-    /**
-     * This method is used to get the text from the username and password fields in the Login tab,
-     * and set the username and password fields in the User Account tab when the login button is clicked.
-     */
-    @FXML
-    public void loginButtonClicked() {
+/**
+ * This method is used to update the Pie Chart data when the Text Fields in the Current Budget Tab is updated.
+ */
+@FXML
+public void updatePieChartData() {
+    ObservableList<PieChart.Data> pieChartData =
+        FXCollections.observableArrayList(
 
-        // Get username and password from login fields in Login tab
-        String username = usernameLoginField.getText();
-        String password = passwordLoginField.getText();
+            // Get text from each dept budget text field and remove any characters than are not integers
+            new PieChart.Data("Sales", new BigDecimal(salesDeptBudgetDisplay.getText().replace(",", "").replace("$", "")).doubleValue()),
+            new PieChart.Data("Marketing", new BigDecimal(marketingDeptBudgetDisplay.getText().replace(",", "").replace("$", "")).doubleValue()),
+            new PieChart.Data("Production", new BigDecimal(productionDeptBudgetDisplay.getText().replace(",", "").replace("$", "")).doubleValue()),
+            new PieChart.Data("IT", new BigDecimal(ITDeptBudgetDisplay.getText().replace(",", "").replace("$", "")).doubleValue()),
+            new PieChart.Data("HR", new BigDecimal(HRDeptBudgetDisplay.getText().replace(",", "").replace("$", "")).doubleValue()));
 
-        try(Scanner FileScanner = new Scanner(Paths.get("Users.txt"));){
+    // Update Pie Chart data with new values from individual departments in Current Budget Tab
+    pieChartDisplay.setData(pieChartData);
 
-            boolean Found = false;
+}
 
-            while (FileScanner.hasNext() && !Found){
+/**
+ * This method is used to get the text from the Username and Password Text Fields in the Login tab,
+ * and set the Username and Password Text Fields in the User Account tab when the Login Button is clicked.
+ * It also checks for valid username and password credentials and updates the Current Budget Tab by reading values
+ * from each user's associated text files.
+ */
+@FXML
+public void loginButtonClicked() {
 
-                String userName = FileScanner.next();
-                String Password = FileScanner.next();
-                String fileName = FileScanner.next();
+    // Get username and password from login Text Fields in Login tab
+    String username = usernameLoginField.getText();
+    String password = passwordLoginField.getText();
 
-                
+    // Create a scanner to read data in Users.txt file
+    try (Scanner FileScanner = new Scanner(Paths.get("Users.txt"));) {
 
-                if (userName.equals(username) && Password.equals(password)){
+        boolean Found = false;
 
+        // Read lines in Users.txt file while the next line has data and is not found
+        while (FileScanner.hasNext() && !Found) {
 
+            // Set username, password, and filename variables to associated data in User.txt file
+            String userName = FileScanner.next();
+            String Password = FileScanner.next();
+            String fileName = FileScanner.next();
 
-                    Found = true;
+            // If valid username and password is found, proceed with this block of code
+            if (userName.equals(username) && Password.equals(password)) {
 
-                    try(Scanner DataScanner = new Scanner(Paths.get(fileName));){
+                // Update boolean to True to break out of while loop
+                Found = true;
 
-                        
-                        companyBudgetDisplay.setText(DataScanner.next());
-                        salesDeptBudgetDisplay.setText(DataScanner.next());
-                        marketingDeptBudgetDisplay.setText(DataScanner.next());
-                        productionDeptBudgetDisplay.setText(DataScanner.next());
-                        ITDeptBudgetDisplay.setText(DataScanner.next());
-                        HRDeptBudgetDisplay.setText(DataScanner.next());
+                // Find absolute path of user's file in Users.txt and read data in that user's file
+                try (Scanner DataScanner = new Scanner(Paths.get(fileName))) {
 
-                        IncorrectPasswordInput.setText("");
+                    // Set Text Fields in Current Budget Tab, convert each string to a double, and format as a currency for each department
+                    companyBudgetDisplay.setText(DataScanner.next());
+                    double company = Double.valueOf(String.valueOf(companyBudgetDisplay.getText()));
+                    companyBudgetDisplay.setText(currency.format(company));
 
-                    }
+                    salesDeptBudgetDisplay.setText(DataScanner.next());
+                    double sales = Double.valueOf(String.valueOf(salesDeptBudgetDisplay.getText()));
+                    salesDeptBudgetDisplay.setText(currency.format(sales));
 
-                    catch(IOException e){
-                        e.printStackTrace();
-                    }
+                    marketingDeptBudgetDisplay.setText(DataScanner.next());
+                    double marketing = Double.valueOf(String.valueOf(marketingDeptBudgetDisplay.getText()));
+                    marketingDeptBudgetDisplay.setText(currency.format(marketing));
 
-            
+                    productionDeptBudgetDisplay.setText(DataScanner.next());
+                    double production = Double.valueOf(String.valueOf(productionDeptBudgetDisplay.getText()));
+                    productionDeptBudgetDisplay.setText(currency.format(production));
 
-            
+                    ITDeptBudgetDisplay.setText(DataScanner.next());
+                    double IT = Double.valueOf(String.valueOf(ITDeptBudgetDisplay.getText()));
+                    ITDeptBudgetDisplay.setText(currency.format(IT));
 
-            
+                    HRDeptBudgetDisplay.setText(DataScanner.next());
+                    double HR = Double.valueOf(String.valueOf(HRDeptBudgetDisplay.getText()));
+                    HRDeptBudgetDisplay.setText(currency.format(HR));
+
+                    // Set Text Fields for Username and Password Display in Account Settings Tab
+                    usernameDisplay.setText(username);
+                    passwordDisplay.setText(password);
+                    // Set text for username in Home Tab to username entered in the login portal
+                    usernameHomeTab.setText(username);
+
+                    // Switch to Home Tab when valid username and password is entered
+                    homeTab.getTabPane().getSelectionModel().select(homeTab);
+
+                    IncorrectPasswordInput.setText("");
+
+                    // Update Pie Chart data
+                    updatePieChartData();
+
+                }
+
+                // Handling exceptions
+                catch (IOException e) {
+                    e.printStackTrace();
+
                 }
             }
-
-            if (!Found){
-
-                IncorrectPasswordInput.setText("Incorrect UserName or Password");
-            }
-        }
-        catch (IOException e){
-            e.printStackTrace();
         }
 
+        // Set Text Field for Incorrect Password Input if incorrect username/password is entered
+        if (!Found) {
+            IncorrectPasswordInput.setText("Incorrect Username or Password");
 
-        
-
+        }
     }
 
-    @FXML
-    public void addBudgetButtonClicked() {
+    // Handling exceptions
+    catch(IOException e) {
+        e.printStackTrace();
 
-        // Switch to Add Budget tab when add budget button is clicked
-        addBudgetTab.getTabPane().getSelectionModel().select(addBudgetTab);
+        }
+     }
 
+/**
+  * This method switches to the Add Budget Tab when the Add Budget Button is clicked.
+  */
+@FXML
+public void addBudgetButtonClicked() {
+
+    // Switch to Add Budget tab when add budget button is clicked
+    addBudgetTab.getTabPane().getSelectionModel().select(addBudgetTab);
+
+}
+
+/**
+ * This method switches to the Change Budget Tab when the Change Budget Button is clicked.
+ */
+@FXML
+public void changeBudgetButtonClicked() {
+
+    // Switch to Change Budget tab when change budget button is clicked
+    changeBudgetTab.getTabPane().getSelectionModel().select(changeBudgetTab);
+
+}
+
+/**
+ * This method switches to the Current Budget Tab when the Current Budget Button is clicked.
+ */
+@FXML
+public void currentBudgetButtonClicked() {
+
+    // Switch to Current Budget tab when current budget button is clicked
+    currentBudgetTab.getTabPane().getSelectionModel().select(currentBudgetTab);
+
+}
+
+/**
+ * This method switches to the User Account Tab when the Account Settings Button is clicked.
+ */
+@FXML
+public void accountSettingsButtonClicked() {
+
+    // Switch to User Account tab when account settings button is clicked
+    userAccountTab.getTabPane().getSelectionModel().select(userAccountTab);
+
+}
+
+/**
+ * This method gets the user input from the Total Budget Text Field and multiplies that by the Dept Budget Percentage
+ * Slider to get the distribution amount for each individual department, then sets those values in currency format
+ * and updates the Pie Chart data.
+ */
+@FXML
+public void AddCompanyBudgetSubmitClicked() {
+
+    // Get text from Company Name Text Field (unused)
+    String company_name = companyNameTextField.getText();
+
+    // Get text from Total Budget Text Field & multiply by Distribution Percentage Slider value
+    BigDecimal total_budget = new BigDecimal(companyTotalBudget.getText());
+    double distribution_percentage = deptBudgetPercentSlider.getValue() / 100;
+    BigDecimal distribution_amount = total_budget.multiply(BigDecimal.valueOf(distribution_percentage));
+
+    // Set Company Total Budget Text Field to display in currency format
+    companyTotalBudget.setText(currency.format(total_budget));
+
+    // Display how much $ is to be distributed into each department
+    deptDistributionDisplay.setText(currency.format(distribution_amount));
+
+    // Display Company Total Budget and Dept Budgets in Current Budget Tabs in currency format
+    companyBudgetDisplay.setText(currency.format(total_budget));
+    salesDeptBudgetDisplay.setText(currency.format(distribution_amount));
+    marketingDeptBudgetDisplay.setText(currency.format(distribution_amount));
+    productionDeptBudgetDisplay.setText(currency.format(distribution_amount));
+    ITDeptBudgetDisplay.setText(currency.format(distribution_amount));
+    HRDeptBudgetDisplay.setText(currency.format(distribution_amount));
+
+    // Update Pie Chart data
+    updatePieChartData();
+}
+
+/**
+ * This method displays the department selected in the Select Department Text Field when a department is selected
+ * from the drop-down menu in the Change Budget Tab
+ * @param event: When a Menu Item is selected from the Selected Dept Menu Button
+ */
+@FXML
+public void setSelectDeptDisplayField(ActionEvent event) {
+
+    // Get Menu Item selected
+    MenuItem source = (MenuItem) event.getSource();
+    // Display Menu Item selected in the Select Dept Text Field
+    selectDeptDisplayField.setText(source.getText());
+}
+
+/**
+ * This method increases the amount of the department selected and the total budget, updates the values in the
+ * Current Budget Tab, and updates the Pie Chart.
+ */
+@FXML
+public void depositFunds() {
+
+    // Get amount entered from the Transaction Amount Text Field and remove any special characters
+    BigDecimal amount = new BigDecimal(transactionAmountField.getText().replace(",", "").replace("$", ""));
+    // Get selected dept from the Select Dept Text Field
+    String selected_dept = selectDeptDisplayField.getText();
+
+    // Switch statement to determine which department is selected from Menu Button
+    switch (selected_dept) {
+            case "Sales":
+                // Get text from Sales Dept Budget Text Field in Current Budget Tab and remove any special chars
+                BigDecimal current_sales_budget = new BigDecimal(salesDeptBudgetDisplay.getText().replace(",", "").replace("$", ""));
+                // Add amount entered to Sales Dept Budget
+                BigDecimal new_sales_budget = current_sales_budget.add(amount);
+                // Set text in Sales Dept Budget Text Field to update amount and convert to currency format
+                salesDeptBudgetDisplay.setText(currency.format(new_sales_budget));
+                break;
+                // Other cases do the same thing, just updates the associated department selected
+            case "Marketing":
+                BigDecimal current_marketing_budget = new BigDecimal(marketingDeptBudgetDisplay.getText().replace(",", "").replace("$", ""));
+                BigDecimal new_marketing_budget = current_marketing_budget.add(amount);
+                marketingDeptBudgetDisplay.setText(currency.format(new_marketing_budget));
+                break;
+            case "Production":
+                BigDecimal current_production_budget = new BigDecimal(productionDeptBudgetDisplay.getText().replace(",", "").replace("$", ""));
+                BigDecimal new_production_budget = current_production_budget.add(amount);
+                productionDeptBudgetDisplay.setText(currency.format(new_production_budget));
+                break;
+            case "IT":
+                BigDecimal current_it_budget = new BigDecimal(ITDeptBudgetDisplay.getText().replace(",", "").replace("$", ""));
+                BigDecimal new_it_budget = current_it_budget.add(amount);
+                ITDeptBudgetDisplay.setText(currency.format(new_it_budget));
+                break;
+            case "HR":
+                BigDecimal current_hr_budget = new BigDecimal(HRDeptBudgetDisplay.getText().replace(",", "").replace("$", ""));
+                BigDecimal new_hr_budget = current_hr_budget.add(amount);
+                HRDeptBudgetDisplay.setText(currency.format(new_hr_budget));
+                break;
     }
 
-    @FXML
-    public void changeBudgetButtonClicked() {
+    // Get text from Total Budget Text Field in Current Budget Tab and remove any special chars
+    BigDecimal current_total =  new BigDecimal(companyBudgetDisplay.getText().replace(",", "").replace("$", ""));
+    // Add amount entered to Total Budget
+    BigDecimal new_total = current_total.add(amount);
+    // Set text in Total Budget Text Field to update Total Budget and convert to currency format
+    companyBudgetDisplay.setText(currency.format(new_total));
 
-        // Switch to Change Budget tab when change budget button is clicked
-        changeBudgetTab.getTabPane().getSelectionModel().select(changeBudgetTab);
+    // Update Pie Chart data
+    updatePieChartData();
 
+}
+
+/**
+ * This method decreases the amount of the department selected and the total budget, updates the values in the
+ * Current Budget Tab, and updates the Pie Chart.
+ */
+@FXML
+public void withdrawFunds() {
+
+    // Same process as depositFunds method, except subtracts from Total Budget and Department Selected
+    BigDecimal amount = new BigDecimal(transactionAmountField.getText().replace(",", "").replace("$", ""));
+    String selected_dept = selectDeptDisplayField.getText();
+
+    switch (selected_dept) {
+        case "Sales":
+            BigDecimal current_sales_budget = new BigDecimal(salesDeptBudgetDisplay.getText().replace(",", "").replace("$", ""));
+            BigDecimal new_sales_budget = current_sales_budget.subtract(amount);
+            salesDeptBudgetDisplay.setText(currency.format(new_sales_budget));
+            break;
+        case "Marketing":
+            BigDecimal current_marketing_budget = new BigDecimal(marketingDeptBudgetDisplay.getText().replace(",", "").replace("$", ""));
+            BigDecimal new_marketing_budget = current_marketing_budget.subtract(amount);
+            marketingDeptBudgetDisplay.setText(currency.format(new_marketing_budget));
+            break;
+        case "Production":
+            BigDecimal current_production_budget = new BigDecimal(productionDeptBudgetDisplay.getText().replace(",", "").replace("$", ""));
+            BigDecimal new_production_budget = current_production_budget.subtract(amount);
+            productionDeptBudgetDisplay.setText(currency.format(new_production_budget));
+            break;
+        case "IT":
+            BigDecimal current_it_budget = new BigDecimal(ITDeptBudgetDisplay.getText().replace(",", "").replace("$", ""));
+            BigDecimal new_it_budget = current_it_budget.subtract(amount);
+            ITDeptBudgetDisplay.setText(currency.format(new_it_budget));
+            break;
+        case "HR":
+            BigDecimal current_hr_budget = new BigDecimal(HRDeptBudgetDisplay.getText().replace(",", "").replace("$", ""));
+            BigDecimal new_hr_budget = current_hr_budget.subtract(amount);
+            HRDeptBudgetDisplay.setText(currency.format(new_hr_budget));
+            break;
     }
 
-    @FXML
-    public void currentBudgetButtonClicked() {
+    BigDecimal current_total =  new BigDecimal(companyBudgetDisplay.getText().replace(",", "").replace("$", ""));
+    BigDecimal new_total = current_total.subtract(amount);
+    companyBudgetDisplay.setText(currency.format(new_total));
 
-        // Switch to Current Budget tab when current budget button is clicked
-        currentBudgetTab.getTabPane().getSelectionModel().select(currentBudgetTab);
+    // Update Pie Chart Data
+    updatePieChartData();
 
-    }
-
-    @FXML
-    public void accountSettingsButtonClicked() {
-
-        // Switch to User Account tab when account settings button is clicked
-        userAccountTab.getTabPane().getSelectionModel().select(userAccountTab);
-
-    }
-
-    @FXML
-    public void AddCompanyBudgetSubmitClicked(ActionEvent event) {
-
-        // Get text from total budget field & multiply by deptPercentage
-        BigDecimal total_budget = new BigDecimal(companyTotalBudget.getText());
-        BigDecimal dept_distribution = total_budget.multiply(deptPercentage);
-
-        // Set company total budget text field to display as a currency
-        companyTotalBudget.setText(currency.format(total_budget));
-
-        // Display how much $ is to be distributed into each department
-        deptDistributionDisplay.setText(currency.format(dept_distribution));
-
-    }
+}
 
 }
