@@ -249,11 +249,6 @@ public class AccountingAppController {
                     catch(IOException e){
                         e.printStackTrace();
                     }
-
-            
-
-            
-
             
                 }
             }
