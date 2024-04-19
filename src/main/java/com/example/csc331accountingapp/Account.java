@@ -1,6 +1,6 @@
 //sidney tsui
 //added: withdraw, deposit, and view balance
-
+//whats left: finish main class, set deptname 
 
 
 package com.example.csc331accountingapp;
