@@ -1,3 +1,12 @@
+/**
+ * Section: CSC331-001
+ * Group: 7
+ * Team: Ryan Eisenbeis, Jake Rouse, Oliver Rice, Sidney Tsui, Jackson Snyder
+ * Project Title: Accounting/Budgeting App
+ * Date: April 21, 2024.
+ * Purpose: Accounting App Driver
+ */
+
 package com.example.csc331accountingapp;
 
 import javafx.application.Application;
